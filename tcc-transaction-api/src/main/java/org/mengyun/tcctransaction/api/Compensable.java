@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 import java.lang.reflect.Method;
 
 /**
+ * 事务补偿注解.
  * Created by changmingxie on 10/25/15.
  */
 @Retention(RetentionPolicy.RUNTIME)
