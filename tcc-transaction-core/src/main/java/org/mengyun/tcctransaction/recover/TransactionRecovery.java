@@ -15,14 +15,21 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * 事务恢复.
  * Created by changmingxie on 11/10/15.
  */
 public class TransactionRecovery {
 
     static final Logger logger = Logger.getLogger(TransactionRecovery.class.getSimpleName());
 
+    /**
+     * TCC事务配置器.
+     */
     private TransactionConfigurator transactionConfigurator;
 
+    /**
+     * 启动事务恢复操作(被RecoverScheduledJob定时任务调用).
+     */
     public void startRecover() {
 
         List<Transaction> transactions = loadErrorTransactions();
@@ -30,6 +37,10 @@ public class TransactionRecovery {
         recoverErrorTransactions(transactions);
     }
 
+    /**
+     * 找出所有执行错误的事务信息
+     * @return
+     */
     private List<Transaction> loadErrorTransactions() {
 
 
@@ -41,13 +52,16 @@ public class TransactionRecovery {
         return transactionRepository.findAllUnmodifiedSince(new Date(currentTimeInMillis - recoverConfig.getRecoverDuration() * 1000));
     }
 
+    /**
+     * 恢复错误的事务.
+     * @param transactions
+     */
     private void recoverErrorTransactions(List<Transaction> transactions) {
 
 
         for (Transaction transaction : transactions) {
-
             if (transaction.getRetriedCount() > transactionConfigurator.getRecoverConfig().getMaxRetryCount()) {
-
+                // 超过次数的，跳过
                 logger.error(String.format("recover failed with max retry count,will not try again. txid:%s, status:%s,retried count:%d,transaction content:%s", transaction.getXid(), transaction.getStatus().getId(), transaction.getRetriedCount(), JSON.toJSONString(transaction)));
                 continue;
             }

@@ -3,7 +3,6 @@ package org.mengyun.tcctransaction.repository;
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
 import org.mengyun.tcctransaction.Transaction;
-import org.mengyun.tcctransaction.common.TransactionType;
 import org.mengyun.tcctransaction.repository.helper.TransactionSerializer;
 import org.mengyun.tcctransaction.serializer.JdkSerializationSerializer;
 import org.mengyun.tcctransaction.serializer.ObjectSerializer;
@@ -14,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * ZooKeeper事务库.
  * Created by changming.xie on 2/18/16.
  */
 public class ZooKeeperTransactionRepository extends CachableTransactionRepository {

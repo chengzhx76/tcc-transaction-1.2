@@ -26,6 +26,10 @@ public class ConfigurableCoordinatorAspect extends ResourceCoordinatorAspect imp
         return Ordered.HIGHEST_PRECEDENCE + 1;
     }
 
+    /**
+     * 设置可补偿事务拦截器.
+     * @param transactionConfigurator
+     */
     public void setTransactionConfigurator(TransactionConfigurator transactionConfigurator) {
         this.transactionConfigurator = transactionConfigurator;
     }

@@ -9,6 +9,7 @@ import org.mengyun.tcctransaction.support.TransactionConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
+ * TCC事务配置器.
  * Created by changmingxie on 11/11/15.
  */
 public class SpringTransactionConfigurator implements TransactionConfigurator {

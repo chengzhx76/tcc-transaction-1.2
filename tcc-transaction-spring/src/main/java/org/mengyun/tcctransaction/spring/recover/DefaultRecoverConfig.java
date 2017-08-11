@@ -8,16 +8,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * 默认事务恢复配置.
  * Created by changming.xie on 6/1/16.
  */
 public class DefaultRecoverConfig implements RecoverConfig {
 
     public static final RecoverConfig INSTANCE = new DefaultRecoverConfig();
 
+    /**
+     * 一个事务最多尝试恢复次数（超过将不在自动恢复，需要人工干预，默认是30次）
+     */
     private int maxRetryCount = 30;
 
+    /**
+     * 一个事务日志当超过一定时间间隔后没有更新就会被认为是发生了异常，需要恢复，
+     * 恢复Job将扫描超过这个时间间隔依旧没有更新的事务日志，并对这些事务进行恢复，时间单位是秒，默认是120秒
+     */
     private int recoverDuration = 120; //120 seconds
 
+    /**
+     * 恢复Job触发间隔配置，默认是(每分钟)
+     */
     private String cronExpression = "0 */1 * * * ?";
 
     private Set<Class<? extends Exception>> delayCancelExceptions = new HashSet<Class<? extends Exception>>();

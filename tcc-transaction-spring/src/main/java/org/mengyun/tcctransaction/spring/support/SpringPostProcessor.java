@@ -5,9 +5,9 @@ import org.mengyun.tcctransaction.support.FactoryBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.stereotype.Component;
 
 /**
+ * TCC Bean后置处理程序
  * Created by changmingxie on 11/20/15.
  */
 public class SpringPostProcessor implements ApplicationListener<ContextRefreshedEvent> {

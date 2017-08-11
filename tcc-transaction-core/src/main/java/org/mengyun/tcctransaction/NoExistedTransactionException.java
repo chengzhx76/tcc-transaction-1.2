@@ -1,6 +1,7 @@
 package org.mengyun.tcctransaction;
 
 /**
+ * 事务不存在异常.
  * Created by changmingxie on 12/16/15.
  */
 public class NoExistedTransactionException extends Exception {

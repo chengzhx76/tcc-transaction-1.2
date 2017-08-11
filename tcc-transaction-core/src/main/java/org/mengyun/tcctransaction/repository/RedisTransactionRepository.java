@@ -1,10 +1,9 @@
 package org.mengyun.tcctransaction.repository;
 
 import org.mengyun.tcctransaction.Transaction;
-import org.mengyun.tcctransaction.common.TransactionType;
 import org.mengyun.tcctransaction.repository.helper.JedisCallback;
-import org.mengyun.tcctransaction.repository.helper.TransactionSerializer;
 import org.mengyun.tcctransaction.repository.helper.RedisHelper;
+import org.mengyun.tcctransaction.repository.helper.TransactionSerializer;
 import org.mengyun.tcctransaction.serializer.JdkSerializationSerializer;
 import org.mengyun.tcctransaction.serializer.ObjectSerializer;
 import org.mengyun.tcctransaction.utils.ByteUtils;
@@ -18,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * Redis缓存事务库.
  * Created by changming.xie on 2/24/16.
  * <p/>
  * As the storage of transaction need safely durable,make sure the redis server is set as AOF mode and always fsync.

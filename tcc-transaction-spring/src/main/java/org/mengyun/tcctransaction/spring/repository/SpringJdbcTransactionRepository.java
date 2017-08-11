@@ -7,6 +7,7 @@ import org.springframework.jdbc.datasource.DataSourceUtils;
 import java.sql.Connection;
 
 /**
+ * SpringJdbc事务库
  * Created by changmingxie on 10/30/15.
  */
 public class SpringJdbcTransactionRepository extends JdbcTransactionRepository {

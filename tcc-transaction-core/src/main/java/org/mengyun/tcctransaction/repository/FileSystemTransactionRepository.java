@@ -1,7 +1,6 @@
 package org.mengyun.tcctransaction.repository;
 
 import org.mengyun.tcctransaction.Transaction;
-import org.mengyun.tcctransaction.common.TransactionType;
 import org.mengyun.tcctransaction.repository.helper.TransactionSerializer;
 import org.mengyun.tcctransaction.serializer.JdkSerializationSerializer;
 import org.mengyun.tcctransaction.serializer.ObjectSerializer;
@@ -18,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * 文件系统事务库.
  * Created by changming.xie on 2/24/16.
  * this repository is suitable for single node, not for cluster nodes
  */

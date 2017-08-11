@@ -4,8 +4,20 @@ package org.mengyun.tcctransaction.api;
  * Created by changmingxie on 10/28/15.
  */
 public enum TransactionStatus {
+    /**
+     * 尝试中:1.
+     */
+    TRYING(1),
 
-    TRYING(1), CONFIRMING(2), CANCELLING(3);
+    /**
+     * 确认中:2.
+     */
+    CONFIRMING(2),
+
+    /**
+     * 取消中:3.
+     */
+    CANCELLING(3);
 
     private int id;
 

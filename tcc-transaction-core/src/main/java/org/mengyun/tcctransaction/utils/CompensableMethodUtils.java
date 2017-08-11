@@ -26,11 +26,14 @@ public class CompensableMethodUtils {
         }
         return method;
     }
-
+    /**
+     * 计算方法类型.
+     */
     public static MethodType calculateMethodType(Propagation propagation, boolean isTransactionActive, TransactionContext transactionContext) {
 
         if ((propagation.equals(Propagation.REQUIRED) && !isTransactionActive && transactionContext == null) ||
                 propagation.equals(Propagation.REQUIRES_NEW)) {
+            // 没有事务上下文信息，并且方法有事务注解的，为可补偿事务根方法（也就是事务发起者）
             return MethodType.ROOT;
         } else if ((propagation.equals(Propagation.REQUIRED) || propagation.equals(Propagation.MANDATORY)) && !isTransactionActive && transactionContext != null) {
             return MethodType.PROVIDER;
@@ -55,6 +58,11 @@ public class CompensableMethodUtils {
         }
     }
 
+    /**
+     * 获取事务上下文参数的位置.
+     * @param parameterTypes
+     * @return
+     */
     public static int getTransactionContextParamPosition(Class<?>[] parameterTypes) {
 
         int i = -1;
@@ -67,6 +75,11 @@ public class CompensableMethodUtils {
         return i;
     }
 
+    /**
+     * 从参数获取事务上下文.
+     * @param args
+     * @return
+     */
     public static TransactionContext getTransactionContextFromArgs(Object[] args) {
 
         TransactionContext transactionContext = null;

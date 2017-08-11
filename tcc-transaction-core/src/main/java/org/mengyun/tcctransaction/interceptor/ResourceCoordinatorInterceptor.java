@@ -1,5 +1,6 @@
 package org.mengyun.tcctransaction.interceptor;
 
+import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.mengyun.tcctransaction.InvocationContext;
@@ -17,19 +18,32 @@ import org.mengyun.tcctransaction.utils.ReflectionUtils;
 import java.lang.reflect.Method;
 
 /**
+ * 资源协调拦截器.
  * Created by changmingxie on 11/8/15.
  */
 public class ResourceCoordinatorInterceptor {
-
+    static final Logger LOG = Logger.getLogger(ResourceCoordinatorInterceptor.class.getSimpleName());
+    /**
+     * 事务配置器.
+     */
     private TransactionManager transactionManager;
 
-
+    /**
+     * 设置事务配置器.
+     * @param transactionManager
+     */
     public void setTransactionManager(TransactionManager transactionManager) {
         this.transactionManager = transactionManager;
     }
 
+    /**
+     * 拦截事务上下文方法.
+     * @param pjp
+     * @throws Throwable
+     */
     public Object interceptTransactionContextMethod(ProceedingJoinPoint pjp) throws Throwable {
-
+        LOG.debug("-->资源协调拦截器 --- 拦截事务上下文方法");
+        // 获取当前事务
         Transaction transaction = transactionManager.getCurrentTransaction();
 
         if (transaction != null) {
@@ -45,6 +59,7 @@ public class ResourceCoordinatorInterceptor {
             }
         }
 
+        LOG.debug("-->资源协调拦截器 --- pjp.proceed(pjp.getArgs())");
         return pjp.proceed(pjp.getArgs());
     }
 
